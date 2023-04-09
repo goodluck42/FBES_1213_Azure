@@ -20,7 +20,9 @@ public class OrderController : ControllerBase
     [HttpPost]
     public async Task Add(Order order)
     {
-        var sendTask = _queueClient.SendMessageAsync(JsonSerializer.Serialize(order), null, TimeSpan.FromDays(1));
+        var sendTask = _queueClient.SendMessageAsync(JsonSerializer.Serialize(order), TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(-1));
+
+        // TimeSpan.FromDays(1)
 
         await sendTask;
     }
