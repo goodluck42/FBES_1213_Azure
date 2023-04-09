@@ -1,0 +1,12 @@
+﻿@model List<Order>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<ul>
+@foreach (var item in Model)
+{
+    <li>Id: @(item.Id)<br/>Description: @(item.Description)<br/>Timestamp: @(item.Timestamp)</li>
+}
+</ul>

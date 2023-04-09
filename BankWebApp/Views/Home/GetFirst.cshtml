@@ -1,0 +1,9 @@
+﻿@model Order?
+
+
+@if (Model == null)
+{
+    return;
+}
+
+<div>Id: @(Model.Id)<br />Description: @(Model.Description)<br />Timestamp: @(Model.Timestamp)</div>

@@ -1,6 +1,4 @@
-using Azure.Storage.Blobs;
-
-using Microsoft.Extensions.Azure;
+using Azure.Storage.Queues;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,14 +10,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton(provider =>
 {
-    var client = new BlobServiceClient(builder.Configuration["ConnectionStrings:Blob"]!.ToString());
+    var client = new QueueServiceClient(builder.Configuration["ConnectionStrings:Seymur69Storage"]);
 
     return client;
-});
-builder.Services.AddAzureClients(clientBuilder =>
-{
-    clientBuilder.AddBlobServiceClient(builder.Configuration["ConnectionStrings:Blob:blob"], preferMsi: true);
-    clientBuilder.AddQueueServiceClient(builder.Configuration["ConnectionStrings:Blob:queue"], preferMsi: true);
 });
 
 var app = builder.Build();
